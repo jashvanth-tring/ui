@@ -2,7 +2,7 @@
 
 Frontend for the TATrack Talent Acquisition Tracker, built with React, TypeScript, Vite, Redux, MUI and Tailwind.
 
-- Folder: `tatrack_ui/tatrack_ui`
+- Folder: `tatrack_ui/`
 - Default URL: http://localhost:5173
 
 ## Prerequisites
