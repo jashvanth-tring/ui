@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# TATrack UI (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for the TATrack Talent Acquisition Tracker, built with React, TypeScript, Vite, Redux, MUI and Tailwind.
 
-Currently, two official plugins are available:
+- Folder: `tatrack_ui/tatrack_ui`
+- Default URL: http://localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18 or later, with npm
+- The TATrack API running (default http://localhost:3008/api). See `README_API.md`.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+cd tatrack_ui/tatrack_ui
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Create a `.env` file in `tatrack_ui/tatrack_ui` with the values below.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Environment variables (`.env`)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```env
+VITE_BACKEND_URL =http://localhost:3008/api
+VITE_ENCRYPTION_KEY = ta_tracker-creds-key
+VITE_PUBLIC_ROUTES = '["/login", "/forgotPassword", "/recover"]'
+
+VITE_FIREBASE_API_KEY=AIzaSyD7f53qpVhLjuBvskMLPYMxRY2rUHVBR5c
+VITE_FIREBASE_AUTH_DOMAIN=ta-tracker-e5c39.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=ta-tracker-e5c39
+VITE_FIREBASE_SENDER_ID=157739526372
+VITE_FIREBASE_APP_ID=1:157739526372:web:025deed39185e9587a64f1
+VITE_FIREBASE_VAPID_KEY=BHcSNi0gMuoXXWB7xqq5WINyTb3KGvacKnLlFj80Ys5craqyLKOigtOKGF8w12pqBokpejDrGoEzIc0M_jogREg
 ```
+
+| Variable | Used for |
+|---|---|
+| `VITE_BACKEND_URL` | Base URL of the API |
+| `VITE_ENCRYPTION_KEY` | Encrypts saved login details in the browser |
+| `VITE_PUBLIC_ROUTES` | Pages that open without login |
+| `VITE_FIREBASE_*` | Firebase push notifications |
+
+## Run
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Development server at http://localhost:5173 |
+| `npm run build` | Production build into `dist/` |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Lint and fix |
+| `npm run format` | Format code with Prettier |
+
+Open http://localhost:5173 and log in.
