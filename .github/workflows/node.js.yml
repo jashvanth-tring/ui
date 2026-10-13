@@ -1,0 +1,37 @@
+# Name of this action
+name: Automated Build Testing
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+  pull_request:
+    branches:
+      - main
+      - development
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  run-build:
+    name: Build Application
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install all dependencies
+        run: npm install
+
+      - name: Run Build
+        run: npm run build

@@ -1,0 +1,63 @@
+.comment-box{
+    gap: 10px;
+    margin-top: 10px;
+    display:inline-flex;
+}
+
+.submit-button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submit-button:hover {
+  background-color: black;
+}
+.input-box {
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  width: 300px;
+}
+.input-box:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.comment-editor:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.comment-editor blockquote {
+  border-left: 3px solid #e5e7eb;
+  margin: 4px 0;
+  padding-left: 10px;
+  color: #6b7280;
+}
+
+.comment-editor pre {
+  background: #f3f4f6;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 13px;
+}

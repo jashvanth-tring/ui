@@ -1,0 +1,175 @@
+/* ============================================================
+   CSS Variables — Change ONE value to update the ENTIRE app
+   ============================================================ */
+:root {
+    --brand: #0D47A1;
+    --brand2:#a0b9e2;
+    --brand3 :#7c7d8da1;
+  /* --- Font Families --- */
+   --font-primary: 'Geist', 'Geist Fallback', sans-serif;
+  --font-heading: 'Geist', 'Geist Fallback', sans-serif;
+  --font-body: 'Geist', 'Geist Fallback', sans-serif;
+  --font-label: 'Geist', 'Geist Fallback', sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+
+  /* --- Font Sizes (rem scale) --- */
+  --font-size-xs: 0.75rem;     /* 12px — badges, helper text */
+  --font-size-sm: 0.875rem;    /* 14px — secondary text, captions */
+  --font-size-base: 1rem;      /* 16px — body text */
+  --font-size-md: 1.0625rem;   /* 17px — nav links, buttons */
+  --font-size-lg: 1.125rem;    /* 18px — subheadings */
+  --font-size-xl: 1.25rem;     /* 20px — section titles */
+  --font-size-2xl: 1.25rem;     /* 24px — card headings */
+  --font-size-3xl: 1.875rem;   /* 30px — page headings */
+  --font-size-4xl: 2.25rem;    /* 36px — hero / display */
+
+  /* --- Font Weights --- */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* --- Line Heights --- */
+  --line-height-tight: 1.2;    /* Headings */
+  --line-height-snug: 1.4;     /* Subheadings, labels */
+  --line-height-base: 1.6;     /* Body text */
+  --line-height-relaxed: 1.75; /* Long-form content */
+
+  /* --- Letter Spacing --- */
+  --letter-spacing-tight: -0.02em;  /* Large headings */
+  --letter-spacing-normal: 0em;     /* Body */
+  --letter-spacing-wide: 0.04em;    /* Labels, all-caps */
+  --letter-spacing-wider: 0.08em;   /* Nav links, badges */
+}
+
+/* ============================================================
+   Base Element Styles — Applied globally
+   ============================================================ */
+
+body {
+  font-family: var(--font-body) !important;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+  letter-spacing: var(--letter-spacing-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading) !important;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--brand) !important;
+}
+
+h1 { font-size: var(--font-size-4xl);font-weight: var(--font-weight-bold) !important; }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); }
+h4 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-semibold); }
+h5 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-medium); }
+h6 { font-size: var(--font-size-md);  font-weight: var(--font-weight-medium); }
+
+/* --- Body text & paragraphs --- */
+p {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+/* --- Navigation links --- */
+nav a,
+nav button,
+.nav-link {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* --- Buttons --- */
+button,
+[role="button"] {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* --- Form inputs, labels, selects --- */
+input,
+select,
+textarea {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+}
+
+label {
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* --- Table --- */
+th {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);        /* bolder */
+  letter-spacing: var(--letter-spacing-wide);  /* slightly spaced, not too wide */
+  text-transform: none;                        /* remove uppercase */
+  color: #1e293b;                              /* darker text color */
+  background-color: #f1f5f9;                  /* subtle blue-gray background */
+  border-bottom: 2px solid #cbd5e1;
+}
+
+td {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+/* --- Badges & Tags --- */
+.badge,
+[data-badge] {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+/* --- Helper / Caption text --- */
+small,
+.text-caption,
+.helper-text {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+}
+
+/* --- Code / Monospace --- */
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+  .required::after {
+  content: " *";
+  color: #ef4444 !important; /* Tailwind red-500 */
+  font-size: 13px;
+}
+
+/* Standard dialog size used across the app */
+.dialog-standard {
+  max-width: 95vw !important;
+  width: 95vw !important;
+  height: 90vh !important;
+}
