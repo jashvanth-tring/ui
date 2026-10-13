@@ -13,11 +13,11 @@ Frontend for the TATrack Talent Acquisition Tracker, built with React, TypeScrip
 ## Setup
 
 ```bash
-cd tatrack_ui/tatrack_ui
+cd tatrack_ui/
 npm install
 ```
 
-Create a `.env` file in `tatrack_ui/tatrack_ui` with the values below.
+Create a `.env` file in `tatrack_ui/` with the values below.
 
 ## Environment variables (`.env`)
 
