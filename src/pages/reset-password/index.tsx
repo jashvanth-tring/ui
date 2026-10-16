@@ -30,11 +30,18 @@ function getStrength(password: string): number {
 
 function StrengthBar({ value }: { value: number }) {
   const pct = Math.round((value / 5) * 100);
-  const config =
-    pct <= 40 ? { color: '#E24B4A', label: 'Weak',   labelColor: '#A32D2D' } :
-    pct <= 60 ? { color: '#EF9F27', label: 'Fair',   labelColor: '#854F0B' } :
-    pct <= 80 ? { color: '#97C459', label: 'Good',   labelColor: '#3B6D11' } :
-                { color: '#639922', label: 'Strong',  labelColor: '#27500A' };
+  let config;
+
+    if(pct <= 40){
+      config =  { color: '#E24B4A', label: 'Weak',   labelColor: '#A32D2D' } ;
+    }
+    else if(pct <= 60)
+      config = { color: '#EF9F27', label: 'Fair',   labelColor: '#854F0B' } ;
+
+   else if(pct <= 80)
+    config = { color: '#97C459', label: 'Good',   labelColor: '#3B6D11' } ;
+      else
+              config =  { color: '#639922', label: 'Strong',  labelColor: '#27500A' };
 
   if (!pct) return null;
   return (
@@ -153,7 +160,9 @@ const ResetPassword = () => {
 
         {/* Current password */}
         <div className="space-y-1.5">
-          <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+          <label 
+          htmlFor="oldPassword"
+          className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Current password
           </label>
           <PasswordInput
@@ -169,7 +178,9 @@ const ResetPassword = () => {
 
         {/* New password */}
         <div className="space-y-1.5">
-          <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+          <label
+          htmlFor="confirmPassword"
+           className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             New password
           </label>
           <PasswordInput
@@ -213,7 +224,8 @@ const ResetPassword = () => {
 
         {/* Confirm password */}
         <div className="space-y-1.5">
-          <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+          <label  htmlFor="confirmPassword"
+           className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Confirm new password
           </label>
           <PasswordInput
