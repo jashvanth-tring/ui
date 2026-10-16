@@ -1,37 +1,32 @@
-# Name of this action
-name: Automated Build Testing
+name: SonarQube Cloud Analysis
 
 on:
   push:
     branches:
       - main
-      - development
-
   pull_request:
-    branches:
-      - main
-      - development
-    types:
-      - opened
-      - synchronize
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  run-build:
-    name: Build Application
-
+  sonarcloud:
+    name: Scan tracker project
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup NodeJS
-        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          fetch-depth: 0
 
-      - name: Install all dependencies
-        run: npm install
-
-      - name: Run Build
-        run: npm run build
+      - name: Run SonarQube Cloud scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=jashvanth-tring
+            -Dsonar.projectKey=jashvanth-tring_talent
