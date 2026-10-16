@@ -1296,7 +1296,8 @@ const EditCandidateForm: React.FC<EditCandidateFormProps> = ({
       <DocumentPreviewDialog
         open={resumeViewerOpen}
         onOpenChange={setResumeViewerOpen}
-        title={`Resume Preview${editInline.candidateName ? ` · ${editInline.candidateName}` : ''}`}
+        title={`Resume Preview` + 
+          (editInline.candidateName ? ` · ` + editInline.candidateName : '')}
         fileKey={editInline.resumeS3Key ?? null}
         fetchDocument={() => {
           const candidateId = Number(editInline.id);

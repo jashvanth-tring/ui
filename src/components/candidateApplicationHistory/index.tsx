@@ -24,6 +24,17 @@ import { JoinedDialog } from '../resume-parser/candidate/JoinedDialog';
 import { ProfileAvatar } from '@/utils/UserAvatar';
 import { PortalPicker } from '../../components/ui/date-time-portal-picker';
 // ─── Helpers ──────────────────────────────────────────────────────────────────
+const getStatusTextClass = (isActive: boolean, isDone: boolean): string => {
+  if (isActive) {
+    return 'text-blue-700';
+  }
+
+  if (isDone) {
+    return 'text-gray-600';
+  }
+
+  return 'text-gray-400';
+};
 
 const formatDate = (iso: string | Date) =>
   new Date(iso).toLocaleString('en-GB', {
@@ -148,9 +159,8 @@ const StatusStepper: React.FC<{ steps: StatusStep[] }> = ({ steps }) => {
 
                 {/* Label */}
                 <p
-                  className={`text-[11px] text-center leading-tight max-w-[88px] font-medium ${
-                    isActive ? 'text-blue-700' : isDone ? 'text-gray-600' : 'text-gray-400'
-                  }`}
+                  className={`text-[11px] text-center leading-tight max-w-[88px] font-medium ${getStatusTextClass(isActive, isDone)}`}
+         
                 >
                   {label}
                 </p>

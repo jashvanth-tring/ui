@@ -887,14 +887,36 @@ export default function EmailCampaignsPage() {
         dryRun,
         mergeOverrides: mo.value,
       });
-      const failed = res.data.results.filter((r) => r.status === 'failed').length;
-      if (dryRun) {
-        showSuccessSnackbar(`Dry run OK for ${res.data.results.length} recipient(s).`);
-      } else if (failed === 0) {
-        showSuccessSnackbar(`Sent ${res.data.results.length} message(s).`);
-      } else {
-        showErrorSnackbar(`${failed} failed, ${res.data.results.length - failed} sent.`);
-      }
+      
+const results = res.data.results ?? [];
+const total = results.length;
+
+const failed = results.filter(
+  (r) => r.status === 'failed'
+).length;
+
+const sent = total - failed;
+
+if (dryRun) {
+  showSuccessSnackbar(
+    `Dry run completed for ${total} recipient(s).`
+  );
+} else if (total === 0) {
+  showErrorSnackbar('No email results returned.');
+} else if (failed === 0) {
+  showSuccessSnackbar(
+    `Email sent successfully to ${sent} recipient(s).`
+  );
+} else if (sent === 0) {
+  showErrorSnackbar(
+    `Failed to send emails to all ${failed} recipient(s).`
+  );
+} else {
+  showErrorSnackbar(
+    `Partial success: ${sent} sent, ${failed} failed.`
+  );
+}
+
       loadLogs();
     } catch (e) {
       const msg =
@@ -923,9 +945,9 @@ export default function EmailCampaignsPage() {
               if (v === 'logs') loadLogs();
             }}
           >
-            <div className="mb-6" role="banner">
+            <header className="mb-6">
               <h1 className="text-2xl font-semibold tracking-tight text-[var(--brand)]">Email campaigns</h1>
-            </div>
+            </header>
 
             <TabsList className="flex h-auto w-full flex-wrap items-end justify-start gap-10 rounded-none border-0 border-b border-slate-200 bg-transparent p-0 !shadow-none">
               <TabsTrigger

@@ -141,7 +141,7 @@ export default function Navbar({ user = null }: NavbarProps) {
     { name: 'Profile',         path: '/home',            roles: [Roles.SUPERUSER, Roles.USER, Roles.ACCOUNT_MANAGER] },
     { name: 'Send Invite',     path: '/admin',           roles: [Roles.SUPERUSER] },
     { name: 'User management', path: '/users',           roles: [Roles.SUPERUSER] },
-    { name: 'Email campaigns', path: '/email-campaigns', roles: [Roles.SUPERUSER, Roles.USER] },
+    { name: 'Email campaigns', path: '/email-campaigns', roles: [Roles.SUPERUSER] },
     { name: 'Settings',        path: '/settings',        roles: [Roles.SUPERUSER] },
     { name: 'Reset Password',  path: '/reset',           roles: [Roles.SUPERUSER, Roles.USER, Roles.ACCOUNT_MANAGER] },
     { name: 'Logout',          path: '/logout',          roles: [Roles.SUPERUSER, Roles.USER, Roles.ACCOUNT_MANAGER] },

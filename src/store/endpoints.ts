@@ -89,7 +89,6 @@ export enum CandidateProfileRoutes {
   CANDIDATE_PROFILE = '/candidates-profile',
   CANDIDATE_PROFILES = '/candidates-profiles',
   CANDIDATE_PROFILES_STATUS_UPDATE = '/candidates-profile/status',
-  CANDIDATE_PIPELINE = '/candidates-profile',
   CANDIDATE_UPLOAD = '/candidates-profile/upload',
   CANDIDATE_EXPORT = '/candidates-profiles/export', 
 }
@@ -143,8 +142,7 @@ export enum DailyTrackerRoutes {
 // Holidays
 export enum HolidayRoutes {
   HOLIDAYS = '/tringapps-holidays',
-  HOLIDAY  = '/tringapps-holidays',
-  UPLOAD   = '/tringapps-holidays/upload',
+  UPLOAD = '/tringapps-holidays/upload',
   BY_YEAR  = '/tringapps-holidays/year',
 }
 export enum CandidateExportRoutes {

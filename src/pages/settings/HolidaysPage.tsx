@@ -260,8 +260,14 @@ export default function HolidaysPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Year */}
                   <div className="space-y-1.5">
-                    <Label className="text-xs font-medium text-slate-600">Year</Label>
-                    <Select value={uploadYear} onValueChange={setUploadYear}>
+                    <Label htmlFor="upload-year" className="text-xs font-medium text-slate-600">
+  Year
+                          </Label>
+                       <Select
+                         value={uploadYear}
+                            onValueChange={setUploadYear}
+                               name="upload-year"
+>
                       <SelectTrigger className="h-10 border-slate-200">
                         <SelectValue placeholder="Select year" />
                       </SelectTrigger>
@@ -277,7 +283,7 @@ export default function HolidaysPage() {
 
                   {/* Upload Box */}
                   <div className="space-y-1.5">
-                    <Label className="text-xs font-medium text-slate-600">Upload File</Label>
+                    <Label htmlFor="holiday-file"  className="text-xs font-medium text-slate-600">Upload File</Label>
 
                     <label
                       htmlFor="holiday-file"
@@ -350,10 +356,11 @@ export default function HolidaysPage() {
               </DialogHeader>
               <div className="space-y-4 py-2">
                 <div className="space-y-1.5">
-                    <Label className="text-xs font-medium text-slate-600">Date</Label>
+                    <Label htmlFor="new-date" className="text-xs font-medium text-slate-600">Date</Label>
                     <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
                         <PopoverTrigger asChild>
                         <Button
+                         id="new-date"
                             type="button"
                             variant="outline"
                             className="h-10 w-full justify-start gap-2 border-slate-200 bg-white font-normal text-left"
@@ -379,11 +386,13 @@ export default function HolidaysPage() {
                     </Popover>
                     </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-medium text-slate-600">Day</Label>
-                  <Select value={newDay} onValueChange={setNewDay}>
-                    <SelectTrigger className="h-10 border-slate-200 bg-white">
-                      <SelectValue placeholder="Select day" />
-                    </SelectTrigger>
+                 <Label htmlFor="new-day" className="text-xs font-medium text-slate-600">
+  Day
+</Label>
+<Select value={newDay} onValueChange={setNewDay}>
+  <SelectTrigger id="new-day" className="h-10 border-slate-200 bg-white">
+    <SelectValue placeholder="Select day" />
+  </SelectTrigger>
                     <SelectContent>
                       {DAYS.map((d) => (
                         <SelectItem key={d} value={d}>
@@ -456,12 +465,14 @@ export default function HolidaysPage() {
             </CardHeader>
             <CardContent className="flex flex-wrap items-end gap-4 p-5">
               <div className="min-w-[140px] space-y-1.5">
-                <Label className="text-xs font-medium text-slate-600">Year</Label>
-                <Select
-                  value={filterYear}
-                  onValueChange={(v) => setFilterYear(v === 'all' ? '' : v)}
-                >
-                  <SelectTrigger className="h-10 border-slate-200 bg-white">
+                <Label htmlFor="filter-year" className="text-xs font-medium text-slate-600">
+  Year
+</Label>
+<Select
+  value={filterYear}
+  onValueChange={(v) => setFilterYear(v === 'all' ? '' : v)}
+>
+  <SelectTrigger id="filter-year" className="h-10 border-slate-200 bg-white">
                     <SelectValue placeholder="All years" />
                   </SelectTrigger>
                   <SelectContent>
@@ -476,12 +487,14 @@ export default function HolidaysPage() {
               </div>
 
               <div className="min-w-[160px] space-y-1.5">
-                <Label className="text-xs font-medium text-slate-600">Month</Label>
-                <Select
-                  value={filterMonth || 'all'}
-                  onValueChange={(v) => setFilterMonth(v === 'all' ? '' : v)}
-                >
-                  <SelectTrigger className="h-10 border-slate-200 bg-white">
+                <Label htmlFor="filter-month" className="text-xs font-medium text-slate-600">
+  Month
+</Label>
+<Select
+  value={filterMonth || 'all'}
+  onValueChange={(v) => setFilterMonth(v === 'all' ? '' : v)}
+>
+  <SelectTrigger id="filter-month" className="h-10 border-slate-200 bg-white">
                     <SelectValue placeholder="All months" />
                   </SelectTrigger>
                   <SelectContent className="h-40">
@@ -496,10 +509,13 @@ export default function HolidaysPage() {
               </div>
 
               <div className="min-w-[220px] flex-1 space-y-1.5">
-                <Label className="text-xs font-medium text-slate-600">Search</Label>
-                <div className="relative">
+                <Label htmlFor="holiday-search" className="text-xs font-medium text-slate-600">
+  Search
+</Label>
+<div className="relative">
                   <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                   <Input
+                    id="holiday-search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by occasion, date, day…"
@@ -528,9 +544,12 @@ export default function HolidaysPage() {
               <CardTitle className="text-base font-semibold text-[var(--brand)]">
                 Holidays
                 {holidays.length > 0 && (
+                  <>
+                  {" "}
                   <span className="ml-2 text-sm font-normal text-slate-500">
                     ({filteredHolidays.length} of {holidays.length})
                   </span>
+                  </>
                 )}
               </CardTitle>
             </CardHeader>

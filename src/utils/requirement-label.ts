@@ -16,7 +16,7 @@ export function formatRequirementSelectLabel(r: {
     r?.client?.clientName ?? r?.client?.clientProfile?.clientName ?? '';
   const loc = r?.client?.location;
   const locationPart =
-    loc != null && String(loc).trim() !== '' ? String(loc) : '';
+   loc != null && typeof loc === 'string' && loc.trim() !== '' ? loc : '';
   const position = r?.positionDetails?.positionName ?? '';
   const exp =
     r?.relExp != null && r?.relExp !== ''

@@ -80,24 +80,27 @@ export default function InlineStatusEditor({
 
   return (
     <div ref={wrapRef} className="relative inline-block">
-      <span
-        onClick={handleToggle}
-        className={`inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-800 cursor-pointer hover:bg-slate-200 transition-colors select-none ${
-          open ? 'ring-1 ring-slate-400' : ''
-        }`}
-      >
-        {selected?.statusName || '—'}
-        <svg
-          className="w-2.5 h-2.5 opacity-40"
-          viewBox="0 0 10 10"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        >
-          <path d="M2 3.5l3 3 3-3" />
-        </svg>
-      </span>
+     <button
+  type="button"
+  onClick={handleToggle}
+  aria-expanded={open}
+  className={`inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-800 cursor-pointer hover:bg-slate-200 transition-colors select-none ${
+    open ? 'ring-1 ring-slate-400' : ''
+  }`}
+>
+  {selected?.statusName || '—'}
+  <svg
+    className="w-2.5 h-2.5 opacity-40"
+    viewBox="0 0 10 10"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    aria-hidden="true"
+  >
+    <path d="M2 3.5l3 3 3-3" />
+  </svg>
+</button>
 
       {open && (
         <div

@@ -72,7 +72,7 @@ const Requirement: React.FC<RequirementProps> = () => {
                     }}
                   >
                     {/* add icons here */}
-                    <span className="mr-1 tabcon">{tab.icon}</span>
+                    <span className="mr-1 tabcon">{tab.icon}</span>{' '}
                     <code className="text-[13px]">{tab.name}</code>
                   </TabsTrigger>
                 ))}

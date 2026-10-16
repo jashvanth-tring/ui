@@ -910,7 +910,7 @@ const EditRequirementForm = ({
         <DocumentPreviewDialog
           open={jrfViewerOpen}
           onOpenChange={setJrfViewerOpen}
-          title={`JRF Preview${requirement.positionDetails?.positionName ? ` · ${requirement.positionDetails.positionName}` : ''}`}
+          title={`JRF Preview` +(requirement.positionDetails?.positionName ? ` · ` + requirement.positionDetails.positionName : '')}
           fileKey={pendingJrfS3Key ?? requirement.jrfS3Key ?? null}
           fetchDocument={() => {
             const rid = requirement.id != null ? Number(requirement.id) : NaN;

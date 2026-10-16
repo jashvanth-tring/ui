@@ -7,7 +7,7 @@ import React from 'react';
  */
 export const toPascalCase = (value: string): string => {
   if (!value) return '';
-  const noNumbers = value.replace(/[0-9]/g, '');
+  const noNumbers = value.replace(/\d+/g, '');
   return noNumbers
     .split(' ')
     .map((word) =>
@@ -20,7 +20,7 @@ export const toPascalCase = (value: string): string => {
 
 /** Blocks numeric key presses (attach to onKeyDown). */
 export const blockNumbers = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  if (/[0-9]/.test(e.key)) e.preventDefault();
+  if (/\d+/.test(e.key)) e.preventDefault();
 };
 
 /** Blocks non-alphabetic key presses — allows spaces (attach to onKeyDown). */
@@ -89,5 +89,5 @@ export const parseDateForSort = (value: string): number => {
   if (!value) return 0;
   const first = value.split(' - ')[0].trim();
   const parsed = new Date(first);
-  return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+  return Number.isNaN(parsed.getTime()) ? 0 : parsed.getTime();
 };

@@ -370,7 +370,7 @@ export default function Location() {
                 }}
                 className="btnshow"
               >
-                <span className=" tabcon">{<Plus size={20} strokeWidth={1.5} />}</span>Add locations
+                <span className=" tabcon">{<Plus size={20} strokeWidth={1.5} />}</span>{' '}Add locations
               </Button>
             </div>
           </div>

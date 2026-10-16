@@ -216,9 +216,7 @@ const AxiosInterceptor: React.FC<
             error?.code ===
               'ERR_CANCELED'
           ) {
-            return Promise.reject(
-              error,
-            );
+           throw error;
           }
 
           // -----------------------------
@@ -316,9 +314,8 @@ const AxiosInterceptor: React.FC<
                 '/login',
               );
 
-              return Promise.reject(
-                refreshError,
-              );
+              throw refreshError;
+             
             }
           }
 
@@ -334,9 +331,8 @@ const AxiosInterceptor: React.FC<
             navigate('/login');
           }
 
-          return Promise.reject(
-            error,
-          );
+          throw error;
+          
         },
       );
 

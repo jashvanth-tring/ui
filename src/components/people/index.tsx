@@ -660,7 +660,7 @@ const handleExport = () => {
         }}
         title={
           previewCandidate
-            ? `Resume Preview${previewCandidate.candidateName ? ` · ${toPascalCase(previewCandidate.candidateName)}` : ''}`
+            ? `Resume Preview` + (previewCandidate.candidateName ? ` · ` +toPascalCase(previewCandidate.candidateName) : '')
             : 'Resume Preview'
         }
         fileKey={previewCandidate?.fileKey}

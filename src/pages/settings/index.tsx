@@ -328,13 +328,13 @@ export default function SettingsPage() {
         <div className="w-full px-4 py-8 pb-14 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
           <Tabs defaultValue="statuses" className="w-full">
             {/* Use div not <header>: global index.css makes every header { position: sticky } */}
-            <div className="mb-6" role="banner">
+            <header className="mb-6">
               <h1 className="text-2xl font-semibold tracking-tight text-[var(--brand)]">Settings</h1>
               <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
                 Superuser tools for pipeline statuses and how they roll up into gap analytics. Gap
                 mappings can follow built-in defaults or your own database overrides.
               </p>
-            </div>
+            </header>
 
             {/* Full-width hairline; active tab = bold + thick underline sitting on that rule */}
             <TabsList className="inline-flex items-center gap-1 rounded-xl bg-indigo-50 p-2 h-auto">
