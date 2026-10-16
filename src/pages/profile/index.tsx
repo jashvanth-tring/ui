@@ -420,13 +420,19 @@ export default function ProfilePopup({ onClose: _onClose, user: propUser }: Prof
       setTempImage(null);
       setPendingFile(null);
     } catch (err: unknown) {
-      const msg =
-        err && typeof err === 'object' && 'response' in err
-          ? (err as { response?: { data?: { message?: string } } }).response?.data?.message
-          : err instanceof Error
-            ? err.message
-            : undefined;
-      showErrorSnackbar(msg || 'Could not save profile. Try again.');
+      let msg: string | undefined;
+
+         if (err && typeof err === 'object' && 'response' in err) {
+        msg = (
+            err as { response?: { data?: { message?: string } } }
+             ).response?.data?.message;
+        } else if (err instanceof Error) {
+              msg =  err.message;
+              } else  {
+          msg = undefined;
+      }
+
+showErrorSnackbar(msg || 'Could not ...');
     } finally {
       setSaving(false);
     }
@@ -491,6 +497,16 @@ export default function ProfilePopup({ onClose: _onClose, user: propUser }: Prof
     </button>
   );
 
+   let avatarBorderClass = 'bg-transparent';
+
+  if (avatarHovered) {
+    if (isEditing) {
+      avatarBorderClass = 'bg-[var(--brand)]';
+    } else {
+      avatarBorderClass = 'bg-slate-300';
+    }
+  }
+
   return (
     <>
       {/* ── outermost: no overflow, just shape ── */}
@@ -502,12 +518,11 @@ export default function ProfilePopup({ onClose: _onClose, user: propUser }: Prof
           {/* ── Avatar ── */}
           <div className="relative shrink-0">
             <div
-              className={cn(
+                 className={cn(
                 'rounded-full transition-all duration-200 p-[3px]',
-                avatarHovered
-                  ? isEditing ? 'bg-[var(--brand)]' : 'bg-slate-300'
-                  : 'bg-transparent'
-              )}
+                avatarBorderClass
+          
+            )}
             >
               <button
                 type="button"
