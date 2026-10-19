@@ -3,13 +3,14 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 interface Props {
+  id?:  string;
   value:     string;
   error?:    string;
   autofilled?: boolean;
   onChange:  (val: string) => void;
 }
 
-const PhoneField: React.FC<Props> = ({ value, error, autofilled, onChange }) => {
+const PhoneField: React.FC<Props> = ({ id ,value, error, autofilled, onChange }) => {
     // Strip +91 prefix if already stored with it, show only the 10-digit number
     const normalizePhone = (raw: string): string => {
       if (!raw) return '91';
@@ -27,6 +28,9 @@ const PhoneField: React.FC<Props> = ({ value, error, autofilled, onChange }) => 
     <PhoneInput
         country="in"
         value={phoneValue}
+        inputProps={{
+  id: id,
+}}
         onChange={(phone) => {
           onChange(`+${phone}`);
         }}

@@ -420,20 +420,7 @@ export default function ProfilePopup({ onClose: _onClose, user: propUser }: Prof
       setTempImage(null);
       setPendingFile(null);
     } catch (err: unknown) {
-      let msg: string | undefined;
-
-         if (err && typeof err === 'object' && 'response' in err) {
-        msg = (
-            err as { response?: { data?: { message?: string } } }
-             ).response?.data?.message;
-        } else if (err instanceof Error) {
-              msg =  err.message;
-              } else  {
-          msg = undefined;
-      }
-
-showErrorSnackbar(msg || 'Could not ...');
-    } finally {
+       } finally {
       setSaving(false);
     }
   };
@@ -497,7 +484,7 @@ showErrorSnackbar(msg || 'Could not ...');
     </button>
   );
 
-   let avatarBorderClass = 'bg-transparent';
+    let avatarBorderClass = 'bg-transparent';
 
   if (avatarHovered) {
     if (isEditing) {
@@ -605,33 +592,62 @@ showErrorSnackbar(msg || 'Could not ...');
                         <div className="flex flex-col gap-3 w-full">
                           {/* Crop canvas */}
                           <div
-                            className="relative mx-auto w-[280px] h-[280px] rounded-xl overflow-hidden
-                              cursor-grab active:cursor-grabbing select-none bg-slate-800"
-                            style={{ touchAction: 'none' }}
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              adjusterDragging.current = true;
-                              adjusterLastPos.current = { x: e.clientX, y: e.clientY };
-                            }}
-                            onMouseMove={(e) => {
-                              if (!adjusterDragging.current) return;
-                              const dx = e.clientX - adjusterLastPos.current.x;
-                              const dy = e.clientY - adjusterLastPos.current.y;
-                              adjusterLastPos.current = { x: e.clientX, y: e.clientY };
-                              setAdjusterPos((p) => ({ x: p.x + dx, y: p.y + dy }));
-                            }}
-                            onMouseUp={() => { adjusterDragging.current = false; }}
-                            onMouseLeave={() => { adjusterDragging.current = false; }}
-                          >
-                            <img
-                              src={adjusterSrc}
-                              alt=""
-                              className="absolute w-full h-full object-cover pointer-events-none"
-                              draggable={false}
-                              style={{
-                                transform: `translate(${adjusterPos.x}px, ${adjusterPos.y}px) scale(${adjusterZoom}) rotate(${adjusterRotation}deg)`,
-                                transformOrigin: 'center center',
-                              }}
+  className="relative mx-auto w-[280px] h-[280px] rounded-xl overflow-hidden
+    cursor-grab active:cursor-grabbing select-none bg-slate-800"
+  style={{ touchAction: 'none' }}
+  role="application"
+  aria-label="Image crop area. Use arrow keys to move the image."
+  tabIndex={0}
+  onKeyDown={(e) => {
+    const step = e.shiftKey ? 10 : 1;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        setAdjusterPos((p) => ({ ...p, x: p.x - step }));
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        setAdjusterPos((p) => ({ ...p, x: p.x + step }));
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setAdjusterPos((p) => ({ ...p, y: p.y - step }));
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        setAdjusterPos((p) => ({ ...p, y: p.y + step }));
+        break;
+    }
+  }}
+  onMouseDown={(e) => {
+    e.preventDefault();
+    adjusterDragging.current = true;
+    adjusterLastPos.current = { x: e.clientX, y: e.clientY };
+  }}
+  onMouseMove={(e) => {
+    if (!adjusterDragging.current) return;
+    const dx = e.clientX - adjusterLastPos.current.x;
+    const dy = e.clientY - adjusterLastPos.current.y;
+    adjusterLastPos.current = { x: e.clientX, y: e.clientY };
+    setAdjusterPos((p) => ({ x: p.x + dx, y: p.y + dy }));
+  }}
+  onMouseUp={() => {
+    adjusterDragging.current = false;
+  }}
+  onMouseLeave={() => {
+    adjusterDragging.current = false;
+  }}
+>
+              <img
+                  src={adjusterSrc}
+                  alt=""
+                  className="absolute w-full h-full object-cover pointer-events-none"
+                        draggable={false}
+                   style={{
+                    transform: `translate(${adjusterPos.x}px, ${adjusterPos.y}px) scale(${adjusterZoom}) rotate(${adjusterRotation}deg)`,
+                     transformOrigin: 'center center',
+                    }}
                             />
                             {/* Circle overlay */}
                             <svg
@@ -931,11 +947,13 @@ showErrorSnackbar(msg || 'Could not ...');
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
+                  <label htmlFor="firstName" 
+                  className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
                     First name
                   </label>
                   {isEditing ? (
                     <Input
+                    id ="firstName"
                       value={form.firstName}
                       onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
                       className={inputCls}
@@ -946,11 +964,13 @@ showErrorSnackbar(msg || 'Could not ...');
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
+                  <label htmlFor="lastName"
+                  className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
                     Last name
                   </label>
                   {isEditing ? (
                     <Input
+                    id = "lastName"
                       value={form.lastName}
                       onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
                       className={inputCls}
@@ -961,11 +981,14 @@ showErrorSnackbar(msg || 'Could not ...');
                 </div>
 
                 <div className="col-span-2">
-                  <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
+                  <label 
+                  htmlFor="officialEmail"
+                  className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
                     Email address
                   </label>
                   {isEditing ? (
                     <Input
+                      id = "officialEmail"
                       type="email"
                       value={form.officialEmail}
                       onChange={(e) => setForm((f) => ({ ...f, officialEmail: e.target.value }))}
@@ -976,18 +999,26 @@ showErrorSnackbar(msg || 'Could not ...');
                   )}
                 </div>
 
-                <div className="col-span-2">
-                  <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
-                    Phone number
-                  </label>
-                  {isEditing ? (
-                    <PhoneField
-                      value={form.primaryPhone}
-                      onChange={(val) => setForm((f) => ({ ...f, primaryPhone: val }))}
-                    />
-                  ) : (
-                    <FieldReadOnly icon={Phone}>{user?.primaryPhone || '—'}</FieldReadOnly>
-                  )}
+                <div className="col-span-2"><label
+  htmlFor="primaryPhone"
+  className="block text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2"
+>
+  Phone number
+</label>
+
+{isEditing ? (
+  <PhoneField
+  id="primarPhone"
+    value={form.primaryPhone}
+    onChange={(val) =>
+      setForm((f) => ({ ...f, primaryPhone: val }))
+    }
+  />
+) : (
+  <FieldReadOnly icon={Phone}>
+    {user?.primaryPhone || '—'}
+  </FieldReadOnly>
+)}
                 </div>
               </div>
             </div>

@@ -57,9 +57,13 @@ const Requirement: React.FC<RequirementProps> = () => {
         <Tabs defaultValue={tabs[0].value} className="tabdiv" value={currentTab}>
           <TabsList className="p-0 h-auto w-100 bg-background gap-1">
             <div className="dropdown">
-              <a href="#" className="dropanc" onClick={handledrop}>
+              <button type ="button"
+               className="dropanc" 
+               onClick={handledrop}>
+
                 {tabs[0].name}
-              </a>
+                
+              </button>
               <div className={drop ? 'tabmain1 show' : 'tabmain1'}>
                 {tabs.map((tab) => (
                   <TabsTrigger

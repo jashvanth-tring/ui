@@ -764,7 +764,7 @@ input:hover {
   width: 60% !important;
 }
 
-.tabliss {}
+
 
 .dropdown {
   display: flex;
@@ -846,7 +846,7 @@ a[aria-current='page']::after {
 
 header {
   position: sticky !important;
-  top: 0 !important;
+ 
   z-index: 9;
   width: 100% !important;
   right: 0;
@@ -1097,7 +1097,7 @@ html::-webkit-scrollbar {
 
 .btnshow {
   background-color: var(--theme-color) !important;
-  border-radius: 5px !important;
+ 
   border-radius: 0px !important;
   color: #fff !important;
   font-size: 1.1vw !important;
@@ -1602,7 +1602,7 @@ html::-webkit-scrollbar {
   margin-top: 2%;
 }
 
-.dashhed2 {}
+
 
 .dashhed21 {}
 
@@ -2587,7 +2587,7 @@ html::-webkit-scrollbar {
   padding: 1% 0%;
   background-color: #9133ea;
   color: #fff;
-  padding-bottom: 1%;
+ 
   border-bottom: 1px solid #dedede;
 }
 
@@ -2771,7 +2771,7 @@ html::-webkit-scrollbar {
 
 .reqflx2btn>button {
   font-size: 1vw;
-  font-size: 1vw;
+
   padding: 10% 22%;
   background: #f4e6ff;
 }
@@ -3178,9 +3178,7 @@ html::-webkit-scrollbar {
     font-size: 0.7em;
   }
 
-  header {
-    position: fixed !important;
-  }
+
 
   .flex-1.posirel>button {
     top: 13px;

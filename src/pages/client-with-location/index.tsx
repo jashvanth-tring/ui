@@ -41,9 +41,9 @@ const ClientWithLocation: React.FC = () => {
         <Tabs defaultValue={tabs[0].value} className="tabdiv" value={currentTab}>
           <TabsList className="p-0 h-auto w-100 bg-background gap-1">
             <div className="dropdown">
-              <a href="#" className="dropanc" onClick={handledrop}>
-                {tabs[0].name}
-              </a>
+              <button type="button" className="dropanc" onClick={handledrop}>
+  {tabs[0].name}
+</button>
               <div className={drop ? 'tabmain1 show' : 'tabmain1'}>
                 {tabs.map((tab) => (
                   <TabsTrigger
@@ -56,7 +56,7 @@ const ClientWithLocation: React.FC = () => {
                     }}
                   >
                     {/* add icons here */}
-                    <span className="mr-1 tabcon">{tab.icon}</span>
+                    <span className="mr-1 tabcon">{tab.icon}</span>{' '}
                     <code className="text-[13px]">{tab.name}</code>
                   </TabsTrigger>
                 ))}

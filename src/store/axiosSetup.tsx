@@ -187,10 +187,8 @@ const AxiosInterceptor: React.FC<
 
           return config;
         },
-        (error) =>
-          Promise.reject(
-            error,
-          ),
+        (error) =>{
+        throw error;}
       );
 
     // ---------------------------------

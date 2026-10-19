@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { format } from 'date-fns';
+import { format, nextDay } from 'date-fns';
 import { CalendarIcon, Loader2, Upload } from 'lucide-react';
 import { CustomDatePicker } from '../../components/ui/custom-date-picker';
 import toast from 'react-hot-toast';
@@ -21,6 +21,19 @@ import {
 } from '../../store/services/daily-tracker';
 import { useAppSelector } from '../../store';
 import { RootState } from '../../store/reducers';
+
+const getAlignmentClass = (align: string) => {
+  if (align === 'left') {
+    return 'text-left';
+  }
+
+  if (align === 'center') {
+    return 'text-center';
+  }
+
+  return '';
+}; 
+
 
 type TabKey = 'profiles' | 'interviews' | 'offers';
 type SectionKey = 'profiles' | 'interviews' | 'offers';
@@ -111,7 +124,7 @@ const downloadBlob = (blob: Blob, filename: string) => {
   link.download = filename;
   document.body.appendChild(link);
   link.click();
-  document.body.removeChild(link);
+ link.remove();
   URL.revokeObjectURL(url);
 };
 
@@ -286,9 +299,9 @@ function ResizableGrid({
                       key={`cell-${index}-${cellIndex}`}
                       colSpan={cell.colSpan}
                       rowSpan={cell.rowSpan}
-                      className={`border border-[#2f2f2f] px-2 py-1.5 align-top ${
-                        cell.align === 'left' ? 'text-left' : cell.align === 'center' ? 'text-center' : ''
-                      } ${cell.className ?? ''}`}
+                     className={`border border-[#2f2f2f] px-2 py-1.5 align-top ${
+  getAlignmentClass(cell.align ?? '')
+} ${cell.className ?? ''}`}
                     >
                       {cell.content}
                     </td>
@@ -302,9 +315,9 @@ function ResizableGrid({
                       key={`footer-cell-${index}-${cellIndex}`}
                       colSpan={cell.colSpan}
                       rowSpan={cell.rowSpan}
-                      className={`border border-[#2f2f2f] px-2 py-1.5 align-top ${
-                        cell.align === 'left' ? 'text-left' : cell.align === 'center' ? 'text-center' : ''
-                      } ${cell.className ?? ''}`}
+                     className={`border border-[#2f2f2f] px-2 py-1.5 align-top ${
+  getAlignmentClass(cell.align ?? '')
+} ${cell.className ?? ''}`}
                     >
                       {cell.content}
                     </td>
@@ -500,7 +513,7 @@ export default function DailyTrakerPage() {
       { key: 'reqRemarks', label: 'Req Remarks', min: 220, width: 260, align: 'left' },
       { key: 'reqChallenges', label: 'Req Challenges', min: 220, width: 260, align: 'left' },
     ],
-    [taUsers],
+    [taUsers, selectedUserIds],
   );
 
   const interviewColumns: ColumnConfig[] = useMemo(
@@ -540,7 +553,7 @@ export default function DailyTrakerPage() {
         align: 'left',
       },
     ],
-    [taUsers],
+    [taUsers,selectedUserIds],
   );
 
   const offerColumns: ColumnConfig[] = [
